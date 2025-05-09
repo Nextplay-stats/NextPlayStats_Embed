@@ -1,3 +1,28 @@
-<script src="https://alcdn.msauth.net/browser/2.28.0/js/msal-browser.min.js"></script>
-<button onclick="signIn()">Login with Microsoft</button>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login with Azure AD</title>
+  <script src="https://alcdn.msauth.net/browser/2.38.0/js/msal-browser.min.js"></script>
+</head>
+<body>
+  <h2>Welcome</h2>
+  <button onclick="signIn()">Sign In</button>
 
+  <script>
+    const msalConfig = {
+      auth: {
+        clientId: "YOUR_CLIENT_ID",
+        redirectUri: "https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPO_NAME/auth.html"
+      }
+    };
+
+    const msalInstance = new msal.PublicClientApplication(msalConfig);
+
+    function signIn() {
+      msalInstance.loginRedirect({
+        scopes: ["user.read"]
+      });
+    }
+  </script>
+</body>
+</html>
