@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Redirecting...</title>
+  <script src="https://alcdn.msauth.net/browser/2.38.0/js/msal-browser.min.js"></script>
+</head>
+<body>
+  <h2>Processing login...</h2>
+
+  <script>
+    const msalConfig = {
+      auth: {
+        clientId: "YOUR_CLIENT_ID",
+        redirectUri: "https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPO_NAME/auth.html"
+      }
+    };
+
+    const msalInstance = new msal.PublicClientApplication(msalConfig);
+
+    msalInstance.handleRedirectPromise().then((response) => {
+      if (response) {
+        // Authenticated, redirect to dashboard
+        window.location.href = "dashboard.html";
+      } else {
+        // Try to get account from cache
+        const account = msalInstance.getAllAccounts()[0];
+        if (account) {
+          window.location.href = "dashboard.html";
+        }
+      }
+    }).catch((error) => {
+      console.error("Login failed: ", error);
+    });
+  </script>
+</body>
+</html>
