@@ -1,6 +1,11 @@
 {
   "routes": [
     {
+      "route": "/.auth/login/aad/callback",
+      "statusCode": 302,
+      "redirect": "/dashboard.html"
+    },
+    {
       "route": "/dashboard.html",
       "allowedRoles": ["authenticated"]
     }
