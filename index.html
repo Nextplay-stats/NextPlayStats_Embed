@@ -2,27 +2,14 @@
 <html>
 <head>
   <title>Login with Azure AD</title>
-  <script src="https://alcdn.msauth.net/browser/2.38.0/js/msal-browser.min.js"></script>
 </head>
 <body>
   <h2>Welcome</h2>
-  <button onclick="signIn()">Sign In</button>
 
-  <script>
-    const msalConfig = {
-      auth: {
-        clientId: "5e3f0be0-0fe3-49a5-a15b-ad174e6ce4b0",
-        redirectUri: "https://nextplay-stats.github.io/NextPlayStats_Embed/auth.html"
-      }
-    };
+  <!-- ✅ Azure Static Web Apps login button -->
+  <a href="/.auth/login/aad?post_login_redirect_uri=/dashboard.html">
+    <button>Sign In</button>
+  </a>
 
-    const msalInstance = new msal.PublicClientApplication(msalConfig);
-
-    function signIn() {
-      msalInstance.loginRedirect({
-        scopes: ["user.read"]
-      });
-    }
-  </script>
 </body>
 </html>
